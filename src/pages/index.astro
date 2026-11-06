@@ -1,8 +1,44 @@
 ---
 import BaseHead from '../components/BaseHead.astro';
-import Footer from '../components/Footer.astro';
-import Header from '../components/Header.astro';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+
+const experience = [
+	{
+		company: 'American Power and Gas',
+		location: 'Seminole, FL',
+		roles: [
+			{ title: 'Lead Software Engineer', dates: 'November 2025 — Present' },
+			{ title: 'Full Stack Software Engineer I', dates: 'July 2025 — November 2025' },
+		],
+		points: [
+			'Built a Blazor/.NET CMS with server-side rendering, SQL, and Azure Blob Storage, enabling marketing and regulatory teams to publish weekly without developer help.',
+			'Lead CRM development for 500 sales reps and 12 supervisors, modernizing legacy JavaScript into TypeScript and C# and avoiding over $2M in annual Salesforce costs based on a vendor quote.',
+			'Partner with marketing, sales, and executive stakeholders to turn workflows into lead routing, quoting, authentication, role-based access, and live-call tools.',
+			'Built a one-click winback checkout that saves top reps an average of five minutes per sale, according to rep reports corroborated by supervisors.',
+			'Created cloud file-ingestion services that scan and safely process customer documents, and structured messy spreadsheets, PDFs, and email attachments into SQL data.',
+			'Co-built a Python call-analysis agent with a Next.js interface, processing thousands of calls daily with over 95% reported production accuracy and human review for uncertain decisions.',
+			'Designed multi-region Azure Functions webhooks with 99.99% availability for EDI transactions; improved SQL jobs from minutes to seconds through query and index tuning.',
+		],
+	},
+	{
+		company: 'University Athletic Association Inc',
+		location: 'Gainesville, FL',
+		roles: [{ title: 'Software Developer Intern', dates: 'May — August 2023' }],
+		points: ['Rebuilt tutoring workflows with single sign-on and database integrations; created a C# error-reporting library used across 15+ applications and automated SQL checks and CI/CD tests.'],
+	},
+	{
+		company: 'Physimax LLC',
+		location: 'Remote',
+		roles: [{ title: 'Web Developer', dates: 'October 2020 — February 2021' }],
+		points: ['Built the public website for an electronic medical records filing startup using Next.js and React.'],
+	},
+];
+
+const skills = [
+	{ label: 'Development', values: 'Python, FastAPI, TypeScript, JavaScript, React, Next.js, Blazor, C#/.NET, SQL' },
+	{ label: 'AI & automation', values: 'Codex, Claude Code, model evaluation, Playwright MCP, CodeRabbit' },
+	{ label: 'Data & systems', values: 'SQL Server, stored procedures, AWS, Azure, Docker, CI/CD, observability, automated testing' },
+];
 ---
 
 <!doctype html>
@@ -11,49 +47,119 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
 	</head>
 	<body>
-		<Header />
-		<main>
-			<h1>🧑‍🚀 Hello, Astronaut!</h1>
-			<p>
-				Welcome to the official <a href="https://astro.build/">Astro</a> blog starter template. This
-				template serves as a lightweight, minimally-styled starting point for anyone looking to
-				build a personal website, blog, or portfolio with Astro.
-			</p>
-			<p>
-				This template comes with a few integrations already configured in your{' '}
-				<code>astro.config.mjs</code> file. You can customize your setup with{' '}
-				<a href="https://astro.build/integrations">Astro Integrations</a> to add tools like
-				Tailwind, React, or Vue to your project.
-			</p>
-			<p>Here are a few ideas on how to get started with the template:</p>
-			<ul>
-				<li>
-					Edit this page in <code>src/pages/index.astro</code>
-				</li>
-				<li>
-					Edit the site header items in <code>src/components/Header.astro</code>
-				</li>
-				<li>
-					Add your name to the footer in <code>src/components/Footer.astro</code>
-				</li>
-				<li>
-					Check out the included blog posts in <code>src/content/blog/</code>
-				</li>
-				<li>
-					Customize the blog post page layout in <code>src/layouts/BlogPost.astro</code>
-				</li>
-			</ul>
-			<p>
-				Have fun! If you get stuck, remember to{' '}
-				<a href="https://docs.astro.build/">read the docs</a> or{' '}
-				<a href="https://astro.build/chat">join us on Discord</a> to ask questions.
-			</p>
-			<p>
-				Looking for a blog template with a bit more personality? Check out{' '}
-				<a href="https://github.com/Charca/astro-blog-template">astro-blog-template</a> by{' '}
-				<a href="https://twitter.com/Charca">Maxi Ferreira</a>.
-			</p>
+		<main class="resume">
+			<header class="hero">
+				<div class="eyebrow">SOFTWARE ENGINEER · ST. PETERSBURG, FL</div>
+				<h1>Asif Islam</h1>
+				<p class="intro">I build dependable software that makes complex work simpler.</p>
+				<div class="contact">
+					<a href="mailto:asifislam510@gmail.com">asifislam510@gmail.com</a>
+					<span aria-hidden="true">·</span>
+					<a href="tel:+17279675983">727 967 5983</a>
+				</div>
+				<div class="actions">
+					<a class="button primary" href="/Asif_Islam_Resume.pdf" download>Download resume <span aria-hidden="true">↓</span></a>
+					<a class="button" href="https://github.com/asif4318" target="_blank" rel="noreferrer">GitHub ↗</a>
+					<a class="button" href="https://linkedin.com/in/asif-islam-ufl" target="_blank" rel="noreferrer">LinkedIn ↗</a>
+				</div>
+			</header>
+
+			<section class="section summary" aria-labelledby="summary-heading">
+				<h2 id="summary-heading">Profile</h2>
+				<p>Lead software engineer modernizing CRM and ERP platforms, building public websites and Python AI agents, and translating marketing, sales, and executive requirements into shipped software. Uses AI coding tools with reusable skills, automated tests, and human review.</p>
+			</section>
+
+			<section class="section" aria-labelledby="experience-heading">
+				<h2 id="experience-heading">Experience</h2>
+				{experience.map((job) => (
+					<article class="job">
+						<div class="job-heading">
+							<div><h3>{job.company}</h3><p class="location">{job.location}</p></div>
+							<div class="roles">{job.roles.map((role) => <p><strong>{role.title}</strong><span>{role.dates}</span></p>)}</div>
+						</div>
+						<ul>{job.points.map((point) => <li>{point}</li>)}</ul>
+					</article>
+				))}
+			</section>
+
+			<section class="section split" aria-label="Selected project and education">
+				<div>
+					<h2>Selected project</h2>
+					<h3>GatorStream</h3>
+					<p class="muted">Independent university pilot · May 2023 — May 2025</p>
+					<p>Built React and Python/FastAPI features for a team-driven lecture-streaming pilot, with Docker services, AWS deployment workflows, CI/CD, and self-healing health checks.</p>
+				</div>
+				<div>
+					<h2>Education</h2>
+					<h3>Western Governors University</h3>
+					<p>BS Computer Science, in progress</p>
+					<p class="muted">Expected January 2027</p>
+				</div>
+			</section>
+
+			<section class="section skills" aria-labelledby="skills-heading">
+				<h2 id="skills-heading">Skills</h2>
+				{skills.map((group) => <p><strong>{group.label}</strong><span>{group.values}</span></p>)}
+			</section>
+
+			<footer><span>© {new Date().getFullYear()} Asif Islam</span><a href="/blog">Notes &amp; writing ↗</a></footer>
 		</main>
-		<Footer />
 	</body>
 </html>
+
+<style>
+	:global(:root) { --ink: #1c2925; --muted: #65746e; --line: #e2e8e3; --accent: #24664c; --paper: #fafbf8; }
+	:global(body) { background: var(--paper); color: var(--ink); font-family: var(--font-atkinson), sans-serif; font-size: 16px; line-height: 1.65; }
+	.resume { width: min(820px, calc(100% - 48px)); margin: 0 auto; padding: 76px 0 32px; }
+	.hero { padding-bottom: 42px; border-bottom: 1px solid var(--line); }
+	.eyebrow { color: var(--accent); font-size: .76rem; font-weight: 700; letter-spacing: .13em; }
+	h1 { margin: 8px 0 0; font-size: clamp(3rem, 8vw, 4.5rem); letter-spacing: -.055em; line-height: 1.08; }
+	.intro { margin: 13px 0 5px; color: #40524a; font-size: 1.25rem; }
+	.contact { display: flex; flex-wrap: wrap; gap: 10px; color: var(--muted); font-size: .95rem; }
+	a { color: inherit; text-underline-offset: 3px; }
+	.contact a { text-decoration: none; }
+	.contact a:hover, footer a:hover { color: var(--accent); }
+	.actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 25px; }
+	.button { display: inline-flex; align-items: center; gap: 8px; padding: 9px 15px; border: 1px solid #d5ded7; border-radius: 6px; color: var(--ink); font-size: .9rem; font-weight: 700; text-decoration: none; transition: background .15s ease, border-color .15s ease; }
+	.button:hover { background: #eff4ef; border-color: #aebfb2; }
+	.button.primary { background: var(--accent); border-color: var(--accent); color: white; }
+	.button.primary:hover { background: #194d38; }
+	.section { padding: 30px 0; border-bottom: 1px solid var(--line); }
+	h2 { margin: 0 0 16px; color: var(--accent); font-size: .78rem; letter-spacing: .12em; text-transform: uppercase; }
+	h3 { margin: 0; font-size: 1.08rem; line-height: 1.4; }
+	p { margin: 0 0 8px; }
+	.summary p { max-width: 720px; margin: 0; color: #43534c; }
+	.job + .job { margin-top: 31px; }
+	.job-heading { display: flex; justify-content: space-between; gap: 24px; }
+	.location, .muted { color: var(--muted); font-size: .9rem; }
+	.roles { min-width: 240px; color: var(--muted); font-size: .86rem; }
+	.roles p { display: flex; flex-direction: column; margin: 0 0 8px; }
+	.roles strong { color: var(--ink); font-size: .93rem; }
+	.job ul { margin: 12px 0 0; padding-left: 19px; color: #43534c; }
+	.job li { padding-left: 4px; margin: 5px 0; }
+	.job li::marker { color: #8baa97; }
+	.split { display: grid; grid-template-columns: 1fr 1fr; gap: 44px; }
+	.split h2 { margin-bottom: 15px; }
+	.split h3 { margin-bottom: 3px; }
+	.split p { margin-top: 7px; color: #43534c; }
+	.split .muted { color: var(--muted); }
+	.skills > p { display: grid; grid-template-columns: 150px 1fr; gap: 15px; margin: 10px 0; }
+	.skills strong { font-size: .93rem; }
+	.skills span { color: #43534c; }
+	footer { display: flex; justify-content: space-between; padding: 24px 0 0; color: var(--muted); font-size: .88rem; }
+	footer a { text-decoration: none; }
+	@media (max-width: 620px) {
+		.resume { width: min(100% - 36px, 820px); padding-top: 44px; }
+		.job-heading { flex-direction: column; gap: 8px; }
+		.roles p { display: block; }
+		.roles strong::after { content: ' · '; }
+		.split { grid-template-columns: 1fr; gap: 24px; }
+		.skills > p { grid-template-columns: 1fr; gap: 0; }
+	}
+	@media print {
+		:global(body) { background: white; font-size: 11pt; }
+		.resume { width: 100%; padding: 0; }
+		.actions, footer a { display: none; }
+		.section, .hero { break-inside: avoid; }
+	}
+</style>
